@@ -1,0 +1,9 @@
+{
+    "type": "node",
+    "request": "launch",
+    "name": "Run TS File",
+    "program": "${workspaceFolder}/src/getChatId.ts",
+    "runtimeArgs": ["-r", "ts-node/register"],
+    "skipFiles": ["<node_internals>/**"]
+  }
+  

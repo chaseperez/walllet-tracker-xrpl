@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "@types/node": "^24.0.4",
+    "@types/node-telegram-bot-api": "^0.64.9",
+    "@types/react": "^19.1.8",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "node-telegram-bot-api": "^0.66.0",
+    "xrpl": "^4.3.0"
+  }
+}
