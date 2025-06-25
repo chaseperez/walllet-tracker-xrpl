@@ -1,0 +1,43 @@
+// /app/api/wallets/route.ts
+
+import { NextResponse } from 'next/server';
+import { Client } from 'xrpl';
+
+const client = new Client('wss://s1.ripple.com');
+
+const wallets = [
+  { name: 'Wallet 1', address: 'rEXAMPLE1' },
+  { name: 'Wallet 2', address: 'rEXAMPLE2' }
+];
+
+export async function GET() {
+  if (!client.isConnected()) await client.connect();
+
+  const result = await Promise.all(
+    wallets.map(async (wallet) => {
+      const info = await client.request({
+        command: 'account_info',
+        account: wallet.address,
+        ledger_index: 'validated'
+      });
+
+      const lines = await client.request({
+        command: 'account_lines',
+        account: wallet.address
+      });
+
+      return {
+        name: wallet.name,
+        address: wallet.address,
+        balance: parseFloat(info.result.account_data.Balance) / 1_000_000,
+        trustlines: lines.result.lines.map((line: any) => ({
+          currency: line.currency,
+          issuer: line.account,
+          balance: parseFloat(line.balance)
+        }))
+      };
+    })
+  );
+
+  return NextResponse.json(result);
+}
