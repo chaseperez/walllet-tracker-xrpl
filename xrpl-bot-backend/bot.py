@@ -1,3 +1,4 @@
+
 import config
 from tracker import fetch_account_tx, get_payment_flows
 from telegram_bot import run_bot
@@ -9,8 +10,10 @@ import time
 import threading
 
 # --- Telegram Bot Setup ---
-bot = Bot(token=os.environ["TELEG8038618967:AAGOKrOAtOdsmYqGiPCV47Z2y19iIVTlQIkAM_BOT_TOKEN"])
-chat_id = os.environ["7861907274"]
+bot_token = os.environ.get("AAGOKrOAtOdsmYqGiPCV47Z2y19iIVTlQIk")  # Change to a proper env var name
+chat_id = int(os.environ.get("7861907274"))  # Chat IDs are integers
+
+bot = Bot(token=bot_token)
 
 def send_telegram_alert(data):
     msg = f"""<b>🔴 New SELL by <a href="{data['wallet_url']}">{data['wallet_name']}</a></b>\n
@@ -46,7 +49,7 @@ def monitor_wallets():
             txs = fetch_account_tx(addr)
             for tx in txs:
                 if tx["tx"]["TransactionType"] == "OfferCreate":
-                    # TODO: Parse price, token, amount, etc.
+                    # TODO: Parse real data from tx
                     alert_data = {
                         "wallet_name": "WalletName",
                         "wallet_url": f"https://xrpscan.com/account/{addr}",
