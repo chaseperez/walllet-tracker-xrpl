@@ -5,8 +5,8 @@ import os
 app = Flask(__name__)
 
 # Load token and chat ID from environment variables
-BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
-CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
+BOT_TOKEN = os.environ.get("8038618967:AAGOKrOAtOdsmYqGiPCV47Z2y19iIVTlQIk")
+CHAT_ID = os.environ.get("7861907274")
 
 bot = Bot(token=BOT_TOKEN)
 
