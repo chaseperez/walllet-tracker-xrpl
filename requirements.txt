@@ -28,4 +28,4 @@ wrapt==1.17.2
 xrpl-py==4.2.0
 requests==2.31.0
 python-telegram-bot
-xrpl-py
+xrpl-pypyperclip
