@@ -26,3 +26,4 @@ websockets==15.0.1
 Werkzeug==2.3.6
 wrapt==1.17.2
 xrpl-py==4.2.0
+requests==2.31.0
